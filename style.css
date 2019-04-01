@@ -1,0 +1,183 @@
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  /* 画面幅に合った余白を追加 */
+  padding: calc(100vw/6) calc(100vw/8);
+  /* GoogleFontsより */
+  font-family: 'PT Sans', 'M PLUS 1p', sans-serif;
+  color: rgb(75, 75, 75);
+}
+
+h1 {
+  /* 画面幅に合わせてフォントサイズを変更 */
+  font-size: calc(0.8em + 2.6vw);
+
+  font-weight: normal;
+}
+
+h1[id^='show'] {
+  color: rgb(226, 88, 45);
+  font-weight: bold;
+  word-wrap: break-word;
+
+  display: none;
+}
+
+h1[id^='show']::before {
+  content: "NowSize： ";
+  color: rgb(75, 75, 75);
+  font-weight: normal;
+}
+
+.cover {
+  background-color: rgb(245, 245, 245);
+  border-radius: 8px;
+
+  /* 
+  FlexBoxを使うには、
+  親要素を「Flexboxコンテナー」にする。
+  display: flex;でそうなる。
+
+  子要素は「Flexboxアイテム」と呼ばれる。
+  widthを指定する必要があるっぽい。
+  */
+  display: flex;
+
+  /*
+  子要素の配置順： flex-direction
+    row： 一般的。左から右。
+    column： 上から下。
+    row-reverse： 反対で、右から左。
+    column-reverse： 反対で、下から上。
+  */
+  flex-direction: row;
+
+  /* 
+  子要素の折返し： flex-wrap
+    nowrap： 折り返しなし
+    wrap： 折り返す
+    wrap-reverse： 折り返すが、上に増えていく
+  ※あくまでも、子要素が親要素の大きさを超えた場合のオプションであり、超えない場合は、どんあ値でも変化ない。
+  */
+  flex-wrap: wrap;
+
+  /* 
+  子要素の横の揃え方： justify-content
+    flex-start： 左揃え(縦の場合は、上揃え)
+    flex-end： 反対で、右揃え。(縦の場合は、下揃え)
+    center； 中央揃え
+    space-between： 幅を均等に開ける。子要素間のみ。
+    space-around： 幅を均等に開ける。子要素だけでなく、最初と最後の子要素の横にも追加。
+  */
+  justify-content: flex-start;
+
+  /* 
+  子要素の縦の揃え方： align-items
+    flex-start： 上揃え(縦の場合は、左揃え)
+    flex-end； 反対で、下揃え(縦の場合は、右揃え)
+    center： 中央揃え
+    baseline： ベースラインで揃える(文字の底が揃う感じ)
+    stretch： 一番大きい子要素に合わせて自動的に大きくなる
+  */
+  align-items: flex-start;
+
+  /* 
+  子要素の行の揃え方： align-content
+    justify-contentのプロパティと同等なので省略
+  ※複数行になった時のみ有効。
+  */
+  align-content: flex-start;
+}
+
+.item {
+  padding: 15px;
+
+  box-sizing: border-box;
+}
+
+/* 画面pxに合わせて変化させる */
+@media screen and (max-width: 575px) {
+  .item {
+    width: calc(100%/1);
+  }
+  #show_1 {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .item {
+    width: calc(100%/2);
+  }
+  #show_2 {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .item {
+    width: calc(100%/3);
+  }
+  #show_3 {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .item {
+    width: calc(100%/4);
+  }
+  #show_4 {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .item {
+    width: calc(100%/6);
+  }
+  #show_5 {
+    display: block;
+  }
+}
+
+.item > div {
+  height: 100px;
+  border-radius: 6px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .12), 0 2px 2px 0 rgba(0, 0, 0, .24);
+}
+
+.item:nth-child(1) div {
+  background-color: rgb(66, 120, 168);
+}
+
+.item:nth-child(2) div {
+  background-color: antiquewhite;
+}
+
+.item:nth-child(3) div {
+  background-color: rgb(35, 236, 236);
+}
+
+.item:nth-child(4) div {
+  background-color: rgb(60, 60, 211);
+}
+
+.item:nth-child(5) div {
+  background-color: rgb(132, 238, 26);
+}
+
+.item:nth-child(6) div {
+  background-color: gold;
+}
+
+.cover > div > div:hover {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+  cursor: pointer;
+  opacity: 0.7;
+  transform: scale(1.02);
+}
